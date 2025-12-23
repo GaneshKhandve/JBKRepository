@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IPLService {
-    Database database = new Database();
+    Database database = null;
 
   public List<Players> getPlayersByRuns( int runs){
       List<Players> result = new ArrayList<>();
+      database = new Database();
       for (Players p : database.getAllPlayers()){
           if (p.getRuns() > 2000){
               result.add(p);
@@ -20,6 +21,7 @@ public class IPLService {
   }
 
   public List<Players> getAllRounderPlayers(){
+      database = new Database();
       List<Players> result = new ArrayList<>();
       for (Players p : database.getAllPlayers()){
           if(p.getRuns()>1000 && p.getWickets()>20){
@@ -30,6 +32,7 @@ public class IPLService {
   }
 
   public Players getPlayersByName(String name ){
+      database = new Database();
       List<Players> allPlayers = database.getAllPlayers();
       for(Players p : allPlayers){
           if(p.getName().toLowerCase().contains(name.toLowerCase())){
@@ -41,7 +44,7 @@ public class IPLService {
 
   public List<Players> getPlayersByTeam (String teamName){
       List<Players> result = new ArrayList<>();
-
+      database = new Database();
       for (Players p : database.getAllPlayers()){
           if (p.getTeamName().toLowerCase().equals(teamName.toLowerCase())||p.getTeamName().toLowerCase().contains(teamName.toLowerCase()) ){
               result.add(p);
@@ -51,16 +54,19 @@ public class IPLService {
   }
 
   public void addPlayer(Players players){
+      database = new Database();
       database.getAllPlayers().add(players);
       System.out.println("Player Added Succesfully");
 
   }
 
   public List<Players> getAllPlyers(){
+      database = new Database();
       return database.getAllPlayers();
   }
 
   public boolean deletePlayer(int jersyNumber){
+      database = new Database();
       for (Players p : database.getAllPlayers()){
           if (p.getJerseyNumber()==jersyNumber){
               database.getAllPlayers().remove(p);
