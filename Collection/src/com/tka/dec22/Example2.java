@@ -32,17 +32,19 @@ public class Example2 {
         movies2025DB.put("Dashawatar",castDashaawtar);
         movies2025DB.put("Chava",castChava);
 
-        System.out.println(movies2025DB);
+       // System.out.println(movies2025DB);
+
+//        for(Map.Entry<String,List<String>> entry : movies2025DB.entrySet()){
+//            System.out.println("Movie Name : " + entry.getKey()+"  "+ "Cast : " + entry.getValue());
+//        }
 
         for(Map.Entry<String,List<String>> entry : movies2025DB.entrySet()){
-            System.out.println("Movie Name : " + entry.getKey()+"  "+ "Cast : " + entry.getValue());
+            for (String actor : entry.getValue()) {
+                if (actor.toLowerCase().contains("ranveer")) {
+                    System.out.println(entry.getKey() + " -> " + entry.getValue());
+                }
+            }
         }
-
-//        for(List<String> stringList : movies2025DB.values()){
-//            if(stringList.contains("Ran")){
-//                System.out.println(stringList);
-//            }
-//        }
 
 
 
