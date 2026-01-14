@@ -10,7 +10,8 @@ public class SelectOperation {
         String url = "jdbc:mysql://localhost:3306/batch1297_db";
         String username = "root";
         String password= "root";
-        String sqlQuery = "SELECT * FROM batch1297_db.student";
+        //String sqlQuery = "SELECT * FROM batch1297_db.student";
+        String sqlQuery2 = "SELECT * FROM batch1297_db.student where roll in (1,2,3,4)";
 
          Class.forName(driver);
         System.out.println("Driver Loaded Successfully");
@@ -21,7 +22,7 @@ public class SelectOperation {
         Statement statement = connection.createStatement();
         System.out.println("Statement object created Successfully ");
 
-        ResultSet resultSet = statement.executeQuery(sqlQuery);
+        ResultSet resultSet = statement.executeQuery(sqlQuery2);
         System.out.println("Query executed Successfully");
 
         while(resultSet.next()){
