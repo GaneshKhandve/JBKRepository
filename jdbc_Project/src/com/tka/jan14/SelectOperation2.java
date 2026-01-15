@@ -2,7 +2,7 @@ package com.tka.jan14;
 
 import java.sql.*;
 
-public class SelectOperation {
+public class SelectOperation2 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
 
@@ -13,16 +13,16 @@ public class SelectOperation {
         String sqlQuery = "SELECT * FROM batch1297_db.student";
         //String sqlQuery2 = "SELECT * FROM batch1297_db.student where roll in (1,2,3,4)";
 
-         Class.forName(driver);
+        Class.forName(driver);
         System.out.println("Driver Loaded Successfully");
 
         Connection connection = DriverManager.getConnection(url,username,password);
         System.out.println("Connection Established Successfully");
 
-        Statement statement = connection.createStatement();
-        System.out.println("Statement object created Successfully ");
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+        System.out.println("Prepared Statement object created Successfully ");
 
-        ResultSet resultSet = statement.executeQuery(sqlQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
         System.out.println("Query executed Successfully");
 
         while(resultSet.next()){
@@ -36,7 +36,7 @@ public class SelectOperation {
 
         }
         resultSet.close();
-        statement.close();
+        preparedStatement.close();
         connection.close();
 
     }
